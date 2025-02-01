@@ -7,6 +7,7 @@ This project demonstrates a production-ready deployment of a containerized appli
 ```
 .
 ├── README.md
+├── buildspec.yml    
 ├── app/
 │   ├── Dockerfile
 │   ├── requirements.txt
