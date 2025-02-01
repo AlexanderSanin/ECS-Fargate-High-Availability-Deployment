@@ -225,30 +225,27 @@ Resources:
               awslogs-region: !Ref AWS::Region
               awslogs-stream-prefix: ecs
 
-  # ECS Service
-  ECSService:
-    Type: AWS::ECS::Service
-    DependsOn: ALBListener
-    Properties:
-      ServiceName: fargate-service
-      Cluster: !Ref ECSCluster
-      TaskDefinition: !Ref TaskDefinition
-      DesiredCount: 2
-      LaunchType: FARGATE
-      NetworkConfiguration:
-        AwsvpcConfiguration:
-          SecurityGroups:
-            - !Ref ECSSecurityGroup
-          Subnets:
-            - !Ref PrivateSubnet1
-            - !Ref PrivateSubnet2
-      LoadBalancers:
-        - ContainerName: app
-          ContainerPort: !Ref ContainerPort
-          TargetGroupArn: !Ref ALBTargetGroup
-      DeploymentConfiguration:
-        MinimumHealthyPercent: 100
-        MaximumHealthyPercent: 200
+# ECS Service
+ECSService:
+  Type: AWS::ECS::Service
+  DependsOn: ALBListener
+  Properties:
+    ServiceName: fargate-service
+    Cluster: !Ref ECSCluster
+    TaskDefinition: !Ref TaskDefinition
+    DesiredCount: 2
+    LaunchType: FARGATE
+    NetworkConfiguration:
+      AwsvpcConfiguration:
+        SecurityGroups:
+          - !Ref ECSSecurityGroup
+        Subnets:
+          - !Ref PrivateSubnet1
+          - !Ref PrivateSubnet2
+    LoadBalancers:
+      - ContainerName: app
+        ContainerPort: !Ref ContainerPort
+        TargetGroupArn: !Ref ALBTargetGroup
 
   # Auto Scaling
   ScalableTarget:
