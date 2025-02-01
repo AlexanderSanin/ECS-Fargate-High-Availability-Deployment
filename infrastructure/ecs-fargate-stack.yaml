@@ -5,11 +5,8 @@ Parameters:
   ContainerImage:
     Type: String
     Description: Docker image for the application
-  
-  ContainerPort:
-    Type: Number
-    Default: 80
-    Description: Port exposed by the container
+    # This will be overridden by deploy.sh with the actual ECR URI
+    Default: !Sub ${AWS::AccountId}.dkr.ecr.${AWS::Region}.amazonaws.com/ecs-fargate-demo:latest
 
 Resources:
   # VPC Configuration
