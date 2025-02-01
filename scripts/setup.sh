@@ -6,7 +6,7 @@ git config --global credential.helper '!aws codecommit credential-helper $@'
 git config --global credential.UseHttpPath true
 
 # Configure git user info
-git config --global user.name "Alexander Yizchak Sanin"
+git config --global user.name "Oleksandr_Yizchak_Sanin"
 git config --global user.email "alexaaander.sanin@gmail.com"
 
 echo "Git configured for AWS CodeCommit"
