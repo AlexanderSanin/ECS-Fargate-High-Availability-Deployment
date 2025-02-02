@@ -1,11 +1,6 @@
 This project demonstrates a production-ready deployment of a containerized application on AWS ECS Fargate with high availability and security features.
 
 
-Screenshot of deployed application:
-Endpoint: http://ecs-fa-appli-fybrc3spv2va-293964297.us-east-1.elb.amazonaws.com/
-![IMG_2633](https://github.com/user-attachments/assets/86725f0d-4cbd-444f-b3ae-159cef799fe0)
-
-
 ## Project Structure
 
 ```
