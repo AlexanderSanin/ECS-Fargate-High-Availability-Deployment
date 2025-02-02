@@ -1,5 +1,3 @@
-![IMG_2633](https://github.com/user-attachments/assets/459cdbb9-a5eb-45de-a10f-6f050ca4b670)# ECS Fargate High-Availability Deployment
-
 This project demonstrates a production-ready deployment of a containerized application on AWS ECS Fargate with high availability and security features.
 
 
