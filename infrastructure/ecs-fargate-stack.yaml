@@ -5,7 +5,7 @@ Parameters:
   ContainerImage:
     Type: String
     Description: Docker image for the application
-    Default: !Sub ${AWS::AccountId}.dkr.ecr.${AWS::Region}.amazonaws.com/ecs-fargate-demo:latest
+    Default: '${AWS::AccountId}.dkr.ecr.${AWS::Region}.amazonaws.com/ecs-fargate-demo:latest'
   
   ContainerPort:
     Type: String
@@ -222,7 +222,7 @@ Resources:
       ExecutionRoleArn: !GetAtt ECSTaskExecutionRole.Arn
       ContainerDefinitions:
         - Name: app
-          Image: !Ref ContainerImage
+          Image: !Sub ${ContainerImage}
           PortMappings:
             - ContainerPort: !Ref ContainerPort
           LogConfiguration:
@@ -309,7 +309,7 @@ Resources:
               Service: codebuild.amazonaws.com
             Action: sts:AssumeRole
       ManagedPolicyArns:
-        - arn:aws:iam::aws:policy/AmazonECR_FullAccess
+        - arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess
         - arn:aws:iam::aws:policy/CloudWatchLogsFullAccess
       Policies:
         - PolicyName: CodeBuildServiceRolePolicy
@@ -340,29 +340,6 @@ Resources:
     Properties:
       LogGroupName: !Sub /ecs/${AWS::StackName}
       RetentionInDays: 30
-
-# CodeBuild Project
-  CodeBuildProject:
-    Type: AWS::CodeBuild::Project
-    Properties:
-      Name: ecs-fargate-demo
-      ServiceRole: !GetAtt CodeBuildServiceRole.Arn
-      Artifacts:
-        Type: NO_ARTIFACTS
-      Environment:
-        Type: LINUX_CONTAINER
-        ComputeType: BUILD_GENERAL1_SMALL
-        Image: aws/codebuild/standard:5.0
-        PrivilegedMode: true
-        EnvironmentVariables:
-          - Name: AWS_DEFAULT_REGION
-            Value: !Ref AWS::Region
-          - Name: AWS_ACCOUNT_ID
-            Value: !Ref AWS::AccountId
-      Source:
-        Type: GITHUB
-        Location: https://github.com/AlexanderSanin/ECS-Fargate-High-Availability-Deployment
-        BuildSpec: buildspec.yml
 
 Outputs:
   LoadBalancerDNS:
