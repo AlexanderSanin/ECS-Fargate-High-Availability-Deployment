@@ -16,6 +16,7 @@ This project demonstrates a production-ready deployment of a containerized appli
 │   └── ecs-fargate-stack.yaml
 └── scripts/
     ├── deploy.sh
+    ├── setup.sh
     └── cleanup.sh
 ```
 
@@ -113,4 +114,3 @@ Run the cleanup script to remove all resources:
 - Fargate: Based on usage
 - CloudWatch: Based on log volume
 
-Remember to clean up resources after testing to avoid unnecessary charges.
