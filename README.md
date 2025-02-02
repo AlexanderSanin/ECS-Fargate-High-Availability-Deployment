@@ -1,6 +1,12 @@
-# ECS Fargate High-Availability Deployment
+![IMG_2633](https://github.com/user-attachments/assets/459cdbb9-a5eb-45de-a10f-6f050ca4b670)# ECS Fargate High-Availability Deployment
 
 This project demonstrates a production-ready deployment of a containerized application on AWS ECS Fargate with high availability and security features.
+
+
+Screenshot of deployed application:
+Endpoint: http://ecs-fa-appli-fybrc3spv2va-293964297.us-east-1.elb.amazonaws.com/
+![IMG_2633](https://github.com/user-attachments/assets/86725f0d-4cbd-444f-b3ae-159cef799fe0)
+
 
 ## Project Structure
 
@@ -34,10 +40,13 @@ git clone <repository-url>
 cd ecs-fargate-deployment
 ```
 
-2. **Build and deploy the application**
+2. **Setup Git credentials, Build and deploy the application**
 ```bash
 # Make scripts executable
 chmod +x scripts/*.sh
+
+# Configure git credentials helper for AWS CodeCommit
+./scripts/setup.sh
 
 # Deploy the stack
 ./scripts/deploy.sh
@@ -113,4 +122,5 @@ Run the cleanup script to remove all resources:
 - ALB: ~$16/month
 - Fargate: Based on usage
 - CloudWatch: Based on log volume
+
 
